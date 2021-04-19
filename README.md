@@ -7,6 +7,7 @@ Steps to Execute Program:
 4.	Run server.py to start the webserver. 
 5.	Open a web browser and point at localhost:8080. The Welcome Page will show up with options for ‘Locations’, Graduation Rates – 12 year progression’, and ‘Profile Details’. 
 6.	Click each one to see a corresponding page. The locations page shows a map with the 4 SUNY locations and some details, The ‘Graduation ….’ Link shows a graph showing the graduation rates of the 4 universities (progression over 12 years), and ‘Profile…’ shows a spreadsheet page with more info about the 4 universities. 
+7.	Note: changing any of the Javascript etc. files that the html accesses can result in the webserver still using the old files due to browser caching. The issue can be avoided by forcing the browser to do a “hard refresh” - Windows: Ctrl+F5, Mac: Cmd+Shift+R, Linux: Ctrl+Shift+R. Also, use “debug=True, reloader=True” as additional bottle.run parameters when developing code. 
 
 Architecture and Concepts:
 
@@ -21,3 +22,4 @@ o	The loadPlot() function uses a GET request to the ‘/suny_plot’ path.
 o	Server.py handles the ‘/suny_plot’ path by calling sunyData.get_suny_plot_data with the corresponding API endpoint to json as the argument (https://data.ny.gov/resource/dv3t-9r67.json). 
 o	Get_suny_plot_data uses the python libraries urllib & json to access the Data Source and formats it to be rendered in plot.js. 
 o	The loadPlot() function is asynchronous. When the data is ready, the data structure for plotly is constructed using a call to getPlotParams with the data returned. The returned data is used to plot the graph using Plotly.plot. 
+
